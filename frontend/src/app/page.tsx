@@ -1,7 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import HeroLaptop from '@/components/3d/HeroLaptop';
+import dynamic from 'next/dynamic';
+const HeroLaptop = dynamic(() => import('@/components/3d/HeroLaptop'), { 
+  ssr: false,
+  loading: () => <div className="absolute inset-0 flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-blue-500 border-t-transparent animate-spin" /></div>
+});
 import StarField from '@/components/ui/StarField';
 import { Cpu, Zap, Shield, Star, ArrowRight } from 'lucide-react';
 

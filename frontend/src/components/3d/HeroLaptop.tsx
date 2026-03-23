@@ -204,7 +204,7 @@ export default function HeroLaptop({ scrollProgress = 0 }: { scrollProgress?: an
   const { theme } = useTheme();
   
   return (
-    <div className="absolute inset-0 -z-10 pointer-events-none">
+    <div className="absolute inset-0 z-10 pointer-events-none">
       <Canvas
         dpr={[1, 1.5]}
         shadows={false}
@@ -225,11 +225,12 @@ export default function HeroLaptop({ scrollProgress = 0 }: { scrollProgress?: an
 
         <Suspense fallback={null}>
           <Float rotationIntensity={0.1} floatIntensity={0.4} speed={1.5}>
-            <LaptopModel scrollProgress={scrollProgress} />
+            <LaptopModel />
           </Float>
         </Suspense>
-
-        <Environment preset={theme === 'dark' ? "night" : "city"} />
+        <Suspense fallback={null}>
+          <Environment preset={theme === 'dark' ? "night" : "city"} />
+        </Suspense>
       </Canvas>
     </div>
   );
